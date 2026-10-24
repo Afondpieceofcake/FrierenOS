@@ -1,7 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Yarndings+12&display=swap');
 
+@font-face {
+  font-family: FrierenLB;
+  src: url(./Fonts/FrierenLB/Frieren-La-Belle-Demo-BF6774e354d7ec6.otf) format("opentype");
+  font-weight: normal;
+  font-style: normal
+}
+
 h1 {
-  font-family: "Playfair Display", system-ui;
+  font-family: "FrierenLB", system-ui;
   font-weight: 700;
   font-style: normal;
   font-size: xxx-large;
