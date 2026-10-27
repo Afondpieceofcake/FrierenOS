@@ -15,11 +15,17 @@ h1 {
   color: white;
   margin: 6rem;
   white-space: nowrap;
+  align-self: flex-start;
 } 
 
 h2 {
     color: white;
-    font-weight: lighter
+    font-weight: lighter;
+    align-self: center;
+}
+
+.main{
+  display: flex;
 }
 
 body {
@@ -56,4 +62,19 @@ body {
 .title_overlay {
   position: relative;
   width: fit-content;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.userimg {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.usertxt {
+  display: flex;
+  align-items: center;
+  gap: 1rem
 }
