@@ -11,12 +11,15 @@ h1 {
   font-family: "FrierenLB", system-ui;
   font-weight: 700;
   font-style: normal;
-  font-size: xxx-large;
+  font-size: clamp(3rem, 15vw, 12rem);
   color: white;
+  margin: 6rem;
+  white-space: nowrap;
 } 
 
 h2 {
-    color: white
+    color: white;
+    font-weight: lighter
 }
 
 body {
@@ -36,12 +39,21 @@ body {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(4.9px);
     -webkit-backdrop-filter: blur(4.9px);
-    padding: 20px;
-
-    width: 50vw;
+    padding: 1.2rem;
+    position: absolute;
+    width: clamp(1rem, 50rem, 65rem);
     height: 17vh;
+    inset: 0;
+    top: 0px;
+    left: 0px;
+    user-select: none;
 }
 
 .grabbable {
     cursor: grab;
+}
+
+.title_overlay {
+  position: relative;
+  width: fit-content;
 }
