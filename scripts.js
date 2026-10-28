@@ -1,9 +1,22 @@
 const glass = document.querySelector(".glass");
 
+
 let offsetX = 0
 let offsetY = 0
-
 let isDragging = false
+
+
+function updateTime() {
+
+    var time = new Date().toLocaleString()
+    var timeText = document.querySelector("#time-date")
+
+    timeText.innerHTML = time
+
+}
+
+setInterval(updateTime, 1000);
+
 
 glass.addEventListener("pointerdown", (Event) => {
     isDragging = true;
@@ -31,3 +44,4 @@ glass.addEventListener("pointerup", (Event) => {
 glass.addEventListener("pointercancel", (Event) => {
     isDragging = false;
 })
+
