@@ -23,7 +23,7 @@ setInterval(updateTime, 1000);
 // Draggable Glass
 // Make the DIV element draggable:
 dragElement(document.querySelector(".grabbable"));
-dragElement(document.querySelector("#window1"));
+//dragElement(document.querySelector("#window1"));
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -68,6 +68,24 @@ function dragElement(elmnt) {
 
 
 //Closable Windows
-function openWindow(element) {
-    
+function closeWindow(element) {
+  var windowParent = element.parentElement;
+  windowParent.parentElement.style.display = "grid";
 }
+
+function openWindow(element) {
+  var windowParent = element.parentElement;
+  windowParent.parentElement.style.display = "flex";
+}
+
+const windowClose = document.querySelector("#windowclose");
+const windowOpen = document.querySelector("#windowopen");
+
+
+windowClose.addEventListener("click", function() {
+  closeWindow(windowClose);
+});
+
+windowOpen.addEventListener("click", function() {
+  openWindow(windowOpen);
+});
