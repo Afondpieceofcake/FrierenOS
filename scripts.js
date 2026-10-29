@@ -5,7 +5,9 @@ let offsetX = 0
 let offsetY = 0
 let isDragging = false
 
-
+/*
+Time and Date Updater
+*/
 function updateTime() {
 
     var time = new Date().toLocaleString()
@@ -18,30 +20,54 @@ function updateTime() {
 setInterval(updateTime, 1000);
 
 
-glass.addEventListener("pointerdown", (Event) => {
-    isDragging = true;
-    const rect = glass.getBoundingClientRect();
+// Draggable Glass
+// Make the DIV element draggable:
+dragElement(document.querySelector(".grabbable"));
+dragElement(document.querySelector("#window1"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+
+//Closable Windows
+function openWindow(element) {
     
-    offsetX = Event.clientX - rect.left;
-    offsetY = Event.clientY - rect.top;
-    
-})
-
-glass.addEventListener("pointermove", (Event) => {
-    if (!isDragging) return;
-    const rect = glass.getBoundingClientRect();
-    console.log("Dragging!", Event.clientX, Event.clientY);
-    console.log("Wrapper:", rect.left, rect.top);
-
-    glass.style.left = `${Event.clientX - offsetX}px`;
-    glass.style.top = `${Event.clientY - offsetY}px`;
-})
-
-glass.addEventListener("pointerup", (Event) => {
-    isDragging = false;
-})
-
-glass.addEventListener("pointercancel", (Event) => {
-    isDragging = false;
-})
-
+}
