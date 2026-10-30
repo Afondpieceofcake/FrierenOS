@@ -5,7 +5,10 @@
   </head>
 
 
-  <body>
+  <body style="background: linear-gradient(0deg, #EBE0CE, #6B9FCF);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;">
   </div>
 
    <div style="position: absolute; z-index: 15; top: 0% ;width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.125); color: #fff; justify-content: space-between; align-items: center; padding: 0.2rem 2rem; box-sizing: border-box;">
@@ -20,15 +23,21 @@
 
     <div class="title_overlay" style="justify-content: center; transform: translate(5rem);">
       <img class="frontdecor" src="./Images/frieren_float_nobg.png" style="height: clamp(20rem, 150vw, 80rem); width: auto; right: 100%; top: 50%; transform: translate(-30%, 10%);">
-      <h1 class=title style="position: absolute; top: 27rem;"><span>F</span>RIEREN <span style="display: inline-block; transform: scale(1.9, 1.6) translate(20%, 2%)">OS</span></h1>  
-
-      <div style="display: flex"> 
-        <div class="glass grabbable" id="glass" style="flex-wrap:wrap; top: 48rem; left: -23rem; display: flex; justify-content: flex-start;" >
-        <p class="text1" style="display: inline-block; align-self: flex-end;">...is a web-based operating system based on Frieren, a character who shows dear viewers that life is not merely about the big picture awaiting one at the end of a journey, but the small, miniscule, details that everyday life has to offer. </p>
-      </div>
-      <div class="buttoncontainer">
-        <p id="windowclose" class="closebutton" style="top: 45rem">X</p>
+      <h1 class="title" style="position: absolute; top: 27rem;"><span>F</span>RIEREN <span style="display: inline-block; transform: scale(1.9, 1.6) translate(20%, 2%)">OS</span></h1>  
+      
+      <div class="buttoncontainer" style="display: flex;">
+        <p id="windowclose" class="closebutton">X</p>
         <p id="windowopen" class="openbutton">O</p>
+      </div>
+      
+      <div style="display: flex" id="glasscontainer"> 
+      <div>
+        
+
+        <div class="glass grabbable" id="glass" style="flex-wrap:wrap; top: 48rem; left: -23rem; display: flex; justify-content: flex-start;" >
+          <div class="buttonanchor" style="position:absolute;width: 10rem; height: 10rem"></div>
+        <p class="text1" style="display: inline-block; align-self: flex-end; transform: translateY(15px);">...is a web-based operating system based on Frieren, a character who shows dear viewers that life is not merely about the big picture awaiting one at the end of a journey, but the small, miniscule, details that everyday life has to offer. </p>
+      </div>
       </div>
       <!-- For later
       <div class="window grabbable" id="window1" style="top: 48rem; left: -23rem">
@@ -42,4 +51,4 @@
     <script src="scripts.js"></script>
   </body>
 
-</html> 
+</html>

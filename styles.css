@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Yarndings+12&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Yarndings+12&display=swap");
 /*
 Available Fonts:
 
@@ -14,9 +14,10 @@ Downloaded:
 
 @font-face {
   font-family: FrierenLB;
-  src: url(./Fonts/FrierenLB/Frieren-La-Belle-Demo-BF6774e354d7ec6.otf) format("opentype");
+  src: url(./Fonts/FrierenLB/Frieren-La-Belle-Demo-BF6774e354d7ec6.otf)
+    format("opentype");
   font-weight: normal;
-  font-style: normal
+  font-style: normal;
 }
 
 h1 {
@@ -28,74 +29,85 @@ h1 {
   margin: 6rem;
   white-space: nowrap;
   align-self: flex-start;
-} 
+}
 
 .title span {
   display: inline-block;
   transform: scale(3, 6) translate(-5%, 8%);
 }
- 
+
 h2 {
-    color: white;
-    font-weight: lighter;
-    align-self: center;
-    font-family: "Cormorant Garamond";
+  color: white;
+  font-weight: lighter;
+  align-self: center;
+  font-family: "Cormorant Garamond";
 }
 
 .text1 {
   position: relative;
-  font-family: "Outfit";
+  font-family: "Cormorant Garamond";
+  font-weight: 600;
   font-size: 1.5rem;
-  color:rgb(250, 250, 250);
-  text-shadow: 1px 1px 3px black;
+  color: rgb(250, 250, 250);
+  text-shadow: 1px 2px 5px black;
 }
 
-.main{
+.main {
   display: flex;
 }
 
 body {
-    display: flex;
-    height: 100vh;
-    justify-content: flex-start;
-    align-items: center;
-    align-content: flex-start;
-    flex-direction: column;
-    background: linear-gradient(0deg, #EBE0CE, #6B9FCF)
+  display: flex;
+  height: 100vh;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
+  flex-direction: column;
 }
 
 .glass {
-    /* From https://css.glass */
-    background: rgba(255, 255, 255, 0.54);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.9px);
-    -webkit-backdrop-filter: blur(4.9px);
-    padding: 1.2rem;
-    position: absolute;
-    width: clamp(1rem, 50rem, 65rem);
-    height: auto;
-    top: 0px;
-    left: 0px;
-    user-select: none;
-    z-index: 12;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.54);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.9px);
+  -webkit-backdrop-filter: blur(4.9px);
+  padding: 1.2rem;
+  position: absolute;
+  width: clamp(1rem, 50rem, 65rem);
+  height: auto;
+  top: 0px;
+  left: 0px;
+  user-select: none;
+  z-index: 12;
+  transition:
+    width 0.25s ease,
+    height 0.5s ease,
+    padding 0.25s ease;
+}
+
+.glass.minimized {
+  height: 2.5rem;
+  width: clamp(1rem, 50rem, 65rem);
+  padding: 0.3rem 0.6rem;
+  overflow: hidden;
 }
 
 .window {
-    background: rgba(255, 255, 255);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    padding: 1.2rem;
-    position: absolute;
-    width: clamp(1rem, 50rem, 65rem);
-    height: clamp(1rem, 50rem, 65rem);
-    inset: 0;
-    top: 0px;
-    left: 0px;
+  background: rgba(255, 255, 255);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 1.2rem;
+  position: absolute;
+  width: clamp(1rem, 50rem, 65rem);
+  height: clamp(1rem, 50rem, 65rem);
+  inset: 0;
+  top: 0px;
+  left: 0px;
 }
 
 .grabbable {
-    cursor: grab;
+  cursor: grab;
 }
 
 .grabbable:active {
@@ -120,7 +132,7 @@ body {
 .usertxt {
   display: flex;
   align-items: center;
-  gap: 1rem
+  gap: 1rem;
 }
 
 .backdecor {
@@ -134,11 +146,12 @@ body {
   z-index: 10;
 }
 
-
 .buttoncontainer {
   display: flex;
   height: 23px;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .openbutton {
@@ -148,7 +161,7 @@ body {
   margin: 0 10px 0 0;
   order: 1;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 14px;
   backdrop-filter: blur(4.9px);
   -webkit-backdrop-filter: blur(4.9px);
   width: 1rem;
@@ -159,6 +172,8 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 13;
+  top: anchor(--anchorpoint bottom);
+  user-select: none;
 }
 
 .closebutton {
@@ -168,7 +183,7 @@ body {
   margin: 0 10px 0 0;
   order: 1;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 14px;
   backdrop-filter: blur(4.9px);
   -webkit-backdrop-filter: blur(4.9px);
   width: 1rem;
@@ -178,5 +193,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 13;
+  z-index: 15;
+  top: anchor(--anchorpoint bottom);
+  user-select: none;
+}
+
+.buttonanchor {
+  anchor-name: --anchorpoint;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

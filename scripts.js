@@ -1,24 +1,20 @@
-const glass = document.querySelector(".glass");
+const glass = document.querySelector("#glass");
 
-
-let offsetX = 0
-let offsetY = 0
-let isDragging = false
+let offsetX = 0;
+let offsetY = 0;
+let isDragging = false;
 
 /*
 Time and Date Updater
 */
 function updateTime() {
+  var time = new Date().toLocaleString();
+  var timeText = document.querySelector("#time-date");
 
-    var time = new Date().toLocaleString()
-    var timeText = document.querySelector("#time-date")
-
-    timeText.innerHTML = time
-
+  timeText.innerHTML = time;
 }
 
 setInterval(updateTime, 1000);
-
 
 // Draggable Glass
 // Make the DIV element draggable:
@@ -26,7 +22,10 @@ dragElement(document.querySelector(".grabbable"));
 //dragElement(document.querySelector("#window1"));
 
 function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
     // if present, the header is where you move the DIV from:
     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
@@ -55,8 +54,10 @@ function dragElement(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+
+    moveButtons();
   }
 
   function closeDragElement() {
@@ -66,26 +67,36 @@ function dragElement(elmnt) {
   }
 }
 
-
-//Closable Windows
-function closeWindow(element) {
-  var windowParent = element.parentElement;
-  windowParent.parentElement.style.display = "grid";
-}
-
-function openWindow(element) {
-  var windowParent = element.parentElement;
-  windowParent.parentElement.style.display = "flex";
-}
-
 const windowClose = document.querySelector("#windowclose");
 const windowOpen = document.querySelector("#windowopen");
 
+//Closable Windows
+function closeWindow(element) {
+  glass.classList.add("minimized");
+  windowClose.style.zIndex = 13;
+  windowOpen.style.zIndex = 16;
+}
 
-windowClose.addEventListener("click", function() {
-  closeWindow(windowClose);
-});
+function openWindow(element) {
+  glass.classList.remove("minimized");
+  windowClose.style.zIndex = 16;
+  windowOpen.style.zIndex = 13;
+}
 
-windowOpen.addEventListener("click", function() {
-  openWindow(windowOpen);
-});
+windowClose.addEventListener("click", closeWindow);
+windowOpen.addEventListener("click", openWindow);
+
+// Window Button Anchoring
+const anchor = document.querySelector(".buttonanchor");
+const buttons = document.querySelector(".buttoncontainer");
+
+function moveButtons() {
+  const position = anchor.getBoundingClientRect();
+
+  buttons.style.position = "fixed";
+  buttons.style.left = position.left - 640 + "px";
+  buttons.style.top = position.top + "px";
+  buttons.style.zIndex = "100";
+}
+
+moveButtons();
