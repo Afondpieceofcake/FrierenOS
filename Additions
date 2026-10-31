@@ -1,0 +1,15 @@
+Fixes:
+
+1. close button placement
+2. add more windows
+3. credit artworks and authors in the ReadMe
+4. Make a good ReadMe file
+
+Additions:
+
+1. Make the open and close button for each window an animated + symbol that spins a bit and eases into an x symbol
+2. Create more windows :
+
+- Make one that is an animated file folder that "barfs out" an easing out of multiple frieren photos/cosplay/merch, and each of them enlarge and wiggle slowly when hovered over, and by clicking on one, opens a mini window that gives a description on the product
+
+3. Add a cool interaction in the user part on the top right, make sure to make use of anchor objects

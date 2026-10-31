@@ -66,44 +66,34 @@ body {
 }
 
 .glass {
-  /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.54);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1.2rem;
   border-radius: 16px;
+  background: rgba(255, 255, 255, 0.54);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(4.9px);
   -webkit-backdrop-filter: blur(4.9px);
-  padding: 1.2rem;
-  position: absolute;
-  width: clamp(1rem, 50rem, 65rem);
-  height: auto;
-  top: 0px;
-  left: 0px;
-  user-select: none;
-  z-index: 12;
-  transition:
-    width 0.25s ease,
-    height 0.5s ease,
-    padding 0.25s ease;
-}
-
-.glass.minimized {
-  height: 2.5rem;
-  width: clamp(1rem, 50rem, 65rem);
-  padding: 0.3rem 0.6rem;
   overflow: hidden;
 }
 
-.window {
-  background: rgba(255, 255, 255);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  padding: 1.2rem;
-  position: absolute;
+.window.minimized .glass {
+  height: 2.9rem;
   width: clamp(1rem, 50rem, 65rem);
-  height: clamp(1rem, 50rem, 65rem);
-  inset: 0;
-  top: 0px;
-  left: 0px;
+  padding: 0.3rem 0.6rem;
+  overflow: hidden;
+  transition:
+    height 0.25s,
+    width 0.25s,
+    padding 0.25s ease;
+}
+
+.window {
+  position: absolute;
+  top: 48rem;
+  left: -23rem;
+  width: clamp(16rem, 70vw, 50rem);
+  z-index: 12;
 }
 
 .grabbable {
@@ -147,54 +137,42 @@ body {
 }
 
 .buttoncontainer {
+  position: relative;
   display: flex;
-  height: 23px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  justify-content: flex-start;
+  height: 3rem;
+  z-index: 20;
 }
 
 .openbutton {
-  font-family: "Cormorant Garamond";
-  font-weight: 900;
-  position: absolute;
-  margin: 0 10px 0 0;
-  order: 1;
-  padding: 10px;
-  border-radius: 14px;
-  backdrop-filter: blur(4.9px);
-  -webkit-backdrop-filter: blur(4.9px);
-  width: 1rem;
-  height: 1rem;
-  cursor: pointer;
   background: rgb(255, 241, 191);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 13;
-  top: anchor(--anchorpoint bottom);
-  user-select: none;
+  z-index: 1;
+  display: none;
 }
 
 .closebutton {
-  font-family: "Cormorant Garamond";
-  font-weight: 900;
+  background-color: #84c3ff;
+  z-index: 2;
+}
+
+.closebutton,
+.openbutton {
   position: absolute;
-  margin: 0 10px 0 0;
-  order: 1;
+  top: 55px;
+  left: 8px;
+  margin: 0;
   padding: 10px;
-  border-radius: 14px;
-  backdrop-filter: blur(4.9px);
-  -webkit-backdrop-filter: blur(4.9px);
   width: 1rem;
   height: 1rem;
-  cursor: pointer;
-  background-color: #84c3ff;
+  border-radius: 14px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 15;
-  top: anchor(--anchorpoint bottom);
+
+  font-family: "Cormorant Garamond";
+  font-weight: 900;
+  cursor: pointer;
   user-select: none;
 }
 
@@ -203,4 +181,55 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.gallery {
+  position: absolute;
+  top: 48rem;
+  left: 5rem;
+}
+
+.gallery .window {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 21rem;
+}
+
+.gallery-photo {
+  position: absolute;
+  width: 9rem;
+  height: 12rem;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.gallery-holder {
+  position: absolute;
+  width: 9rem;
+  height: 10rem;
+  border-radius: 16px;
+  background-color: blue;
+}
+
+.gallery .grabbable {
+  cursor: pointer;
+}
+
+.window.window-right {
+  position: fixed !important;
+  top: 6rem !important;
+  right: 0 !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: 25rem;
+  margin: 0;
+  z-index: 100;
+}
+
+.window-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }

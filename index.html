@@ -19,31 +19,77 @@
     
     <h2 style="position: absolute; top: 7rem;">Welcome to</h2>
 
+
   <div class="main">
 
     <div class="title_overlay" style="justify-content: center; transform: translate(5rem);">
       <img class="frontdecor" src="./Images/frieren_float_nobg.png" style="height: clamp(20rem, 150vw, 80rem); width: auto; right: 100%; top: 50%; transform: translate(-30%, 10%);">
       <h1 class="title" style="position: absolute; top: 27rem;"><span>F</span>RIEREN <span style="display: inline-block; transform: scale(1.9, 1.6) translate(20%, 2%)">OS</span></h1>  
       
-      <div class="buttoncontainer" style="display: flex;">
-        <p id="windowclose" class="closebutton">X</p>
-        <p id="windowopen" class="openbutton">O</p>
+  
+  
+  <!-- Window 1 -->
+      <div class="window grabbable" id="window-shell">
+      <div class="buttoncontainer">
+        <p class="closebutton">X</p>
+       <p class="openbutton">O</p>
       </div>
-      
-      <div style="display: flex" id="glasscontainer"> 
-      <div>
-        
 
-        <div class="glass grabbable" id="glass" style="flex-wrap:wrap; top: 48rem; left: -23rem; display: flex; justify-content: flex-start;" >
-          <div class="buttonanchor" style="position:absolute;width: 10rem; height: 10rem"></div>
-        <p class="text1" style="display: inline-block; align-self: flex-end; transform: translateY(15px);">...is a web-based operating system based on Frieren, a character who shows dear viewers that life is not merely about the big picture awaiting one at the end of a journey, but the small, miniscule, details that everyday life has to offer. </p>
+
+  <!-- The part that can be hidden -->
+     <div class="glass">
+       <p class="text1">
+         ...is a web-based operating system based on Frieren,
+         a character who shows dear viewers that life is not
+         merely about the big picture awaiting one at the end
+         of a journey, but the small, miniscule, details that
+         everyday life has to offer.
+       </p>
       </div>
       </div>
-      <!-- For later
-      <div class="window grabbable" id="window1" style="top: 48rem; left: -23rem">
-        <p id="window1header">Grab Here</p>
+
+
+  <!-- Window 2 -->
+      <div class="window grabbable window-right">
+  <div class="buttoncontainer">
+    <p class="closebutton">X</p>
+    <p class="openbutton">O</p>
+  </div>
+
+  <div class="glass">
+    <p class="text1">
+      <img class="window-image" src="./Images/frierene standing with flowers.webp" alt="Frieren with flowers">
+    </p>
+  </div>
+</div>
+
+</div>
+
+    <div class="gallery">
+      <div class="window grabbable">
+        <div class="buttoncontainer">
+          <p class="closebutton">X</p>
+          <p class="openbutton">O</p>
+        </div>
+
+        <div class="glass">
+          <p class="text1">A recollection of her journey...</p>
+        </div>
       </div>
-      -->
+
+      
+
+      <div class="gallery-holder">
+        <img class="gallery-photo" src="./Images/frieren water real.jpg">
+        <img class="gallery-photo" src="./Images/frierene standing with flowers.webp">
+        <img class="gallery-photo" src="./Images/frieren sleeping at a book.jpeg">
+        <img class="gallery-photo" src="./Images/frieren cozy.png">
+
+      </div>
+
+    </div>
+
+
   
     </div>
   </div>
@@ -52,3 +98,5 @@
   </body>
 
 </html>
+
+ 

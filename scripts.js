@@ -1,5 +1,3 @@
-const glass = document.querySelector("#glass");
-
 let offsetX = 0;
 let offsetY = 0;
 let isDragging = false;
@@ -18,85 +16,79 @@ setInterval(updateTime, 1000);
 
 // Draggable Glass
 // Make the DIV element draggable:
-dragElement(document.querySelector(".grabbable"));
-//dragElement(document.querySelector("#window1"));
 
-function dragElement(elmnt) {
-  var pos1 = 0,
-    pos2 = 0,
-    pos3 = 0,
-    pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
+function toggleWindow(event, action) {
+  const windowShell = event.currentTarget.closest(".window");
+  const windowClose = windowShell.querySelector(".closebutton");
+  const windowOpen = windowShell.querySelector(".openbutton");
+
+  // Minimize the window
+  if (action == "close") {
+    windowShell.classList.add("minimized");
+    windowClose.style.display = "none";
+    windowOpen.style.display = "flex";
+  } else if (action == "open") {
+    windowShell.classList.remove("minimized");
+    windowClose.style.display = "flex";
+    windowOpen.style.display = "none";
   }
+}
 
-  function dragMouseDown(e) {
-    e = e || window.event;
+document.querySelectorAll(".closebutton").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    toggleWindow(event, "close");
+  });
+});
+
+document.querySelectorAll(".openbutton").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    toggleWindow(event, "open");
+  });
+});
+
+document.querySelectorAll(".window").forEach((windowShell) => {
+  dragElement(windowShell);
+});
+
+function dragElement(element) {
+  let startX = 0;
+  let startY = 0;
+  let startLeft = 0;
+  let startTop = 0;
+
+  element.addEventListener("mousedown", startDrag);
+
+  function startDrag(e) {
+    // Clicking a button should not start dragging
+    if (e.target.closest(".buttoncontainer")) return;
+
     e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
+
+    startX = e.clientX;
+    startY = e.clientY;
+    startLeft = element.offsetLeft;
+    startTop = element.offsetTop;
+
+    document.addEventListener("mousemove", drag);
+    document.addEventListener("mouseup", stopDrag);
   }
 
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
-    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
-
-    moveButtons();
+  function drag(e) {
+    element.style.left = startLeft + (e.clientX - startX) + "px";
+    element.style.top = startTop + (e.clientY - startY) + "px";
   }
 
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
+  function stopDrag() {
+    document.removeEventListener("mousemove", drag);
+    document.removeEventListener("mouseup", stopDrag);
   }
 }
 
-const windowClose = document.querySelector("#windowclose");
-const windowOpen = document.querySelector("#windowopen");
+const galleryWindow = document.querySelector(".gallery");
+const messageWindow = galleryWindow.querySelector(".window");
+const photoGallery = galleryWindow.querySelector(".gallery-holder");
 
-//Closable Windows
-function closeWindow(element) {
-  glass.classList.add("minimized");
-  windowClose.style.zIndex = 13;
-  windowOpen.style.zIndex = 16;
-}
-
-function openWindow(element) {
-  glass.classList.remove("minimized");
-  windowClose.style.zIndex = 16;
-  windowOpen.style.zIndex = 13;
-}
-
-windowClose.addEventListener("click", closeWindow);
-windowOpen.addEventListener("click", openWindow);
-
-// Window Button Anchoring
-const anchor = document.querySelector(".buttonanchor");
-const buttons = document.querySelector(".buttoncontainer");
-
-function moveButtons() {
-  const position = anchor.getBoundingClientRect();
-
-  buttons.style.position = "fixed";
-  buttons.style.left = position.left - 640 + "px";
-  buttons.style.top = position.top + "px";
-  buttons.style.zIndex = "100";
-}
-
-moveButtons();
+messageWindow.addEventListener("click", () => {
+  photoGallery.style.display =
+    photoGallery.style.display === "block" ? "none" : "block";
+});
